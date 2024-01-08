@@ -17,18 +17,3 @@ def status_route():
     """ Status of the web server
     """
     return jsonify({"status": "OK"})
-
-
-@app_views.route("/stats", strict_slashes=False)
-def stats_route():
-    """ Retrieves the number of each objects by type
-    """
-    stats = {
-        "amenities": storage.count(Amenity),
-        "cities": storage.count(City),
-        "places": storage.count(Place),
-        "reviews": storage.count(Review),
-        "states": storage.count(State),
-        "users": storage.count(User)
-    }
-    return jsonify(stats)
