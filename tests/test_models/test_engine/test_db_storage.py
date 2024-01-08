@@ -87,9 +87,8 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
-    def test_get(self):
-        """Test method for obtaining an instance storage"""
-        storage = DBstorage()
+    def test_get_db(self):
+        """ Tests method for obtaining an instance db storage"""
         dic = {"name": "Cundinamarca"}
         instance = State(**dic)
         storage.new(instance)
@@ -98,12 +97,12 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(get_instance, instance)
 
     def test_count(self):
-        """Tests count method db storage"""
-        storage = DBStorage()
+        """ Tests count method db storage """
         dic = {"name": "Vecindad"}
         state = State(**dic)
         storage.new(state)
-        dic = {"name": "Mexico", "state_id": state_id}
+        dic = {"name": "Mexico", "state_id": state.id}
+        city = City(**dic)
         storage.new(city)
         storage.save()
         c = storage.count()
